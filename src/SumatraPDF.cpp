@@ -5102,6 +5102,7 @@ static LRESULT FrameOnCommand(MainWindow* win, HWND hwnd, UINT msg, WPARAM wp, L
             break;
 
         case CmdAdvancedOptions:
+        case CmdAdvancedSettings:
             OpenAdvancedOptions();
             break;
 
