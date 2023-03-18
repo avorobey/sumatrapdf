@@ -3541,6 +3541,7 @@ static void UpdateAfterDrag(TabsCtrl* tabsCtrl, int tab1, int tab2) {
         newSelected = tab2;
     }
     tabsCtrl->SetSelected(newSelected);
+    tabsCtrl->Layout();
 }
 
 LRESULT TabsCtrl::OnNotifyReflect(WPARAM wp, LPARAM lp) {
@@ -3582,7 +3583,7 @@ LRESULT TabsCtrl::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
         overClose = tabState.overClose;
         lastMousePos = mousePos;
         const char* msgName = WinMsgName(msg);
-        // logfa("msg; %s, tabUnderMouse: %d, overClose: %d\n", msgName, tabUnderMouse, (int)overClose);
+        //logfa("msg; %s, tabUnderMouse: %d, overClose: %d drag: %d\n", msgName, tabUnderMouse, (int)overClose, drag);
     }
 
     switch (msg) {
@@ -3661,7 +3662,6 @@ LRESULT TabsCtrl::WndProc(HWND hwnd, UINT msg, WPARAM wp, LPARAM lp) {
                     }
                     SetSelected(tabUnderMouse);
                     TriggerSelectionChanged(this);
-                    return 0;
                 }
                 SetCapture(hwnd);
             }
